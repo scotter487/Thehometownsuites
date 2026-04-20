@@ -331,7 +331,7 @@
         <span class="section-label section-label--light">Stay Connected</span>
         <h2 class="section-title section-title--light">Be the First to Know</h2>
         <p class="contact__desc">The Hometown Suites opens summer 2026. Join the waitlist and we'll reach out when bookings open.</p>
-        <form class="contact__form" action="#" method="post" onsubmit="handleSubmit(event)">
+        <form class="contact__form" action="https://formspree.io/f/mgorzjrg" method="post" onsubmit="handleSubmit(event)">
           <div class="form__row">
             <div class="form__group">
               <label for="name">Your Name</label>
@@ -394,11 +394,49 @@
       nav.classList.toggle('nav--scrolled', window.scrollY > 40);
     });
 
-    // Waitlist form
-    function handleSubmit(e) {
+    // Waitlist form — Formspree Ajax integration
+    async function handleSubmit(e) {
       e.preventDefault();
-      document.querySelector('.contact__form').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'flex';
+      const form = e.target;
+      const btn  = form.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      try {
+        const response = await fetch('https://formspree.io/f/mgorzjrg', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form),
+        });
+
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('successMsg').style.display = 'flex';
+        } else {
+          const data = await response.json();
+          const msg = data.errors?.map(err => err.message).join(', ')
+            || 'Something went wrong. Please try again.';
+          showFormError(form, msg);
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }
+      } catch {
+        showFormError(form, 'Network error — please check your connection and try again.');
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    }
+
+    function showFormError(form, message) {
+      let errEl = form.querySelector('.form__error');
+      if (!errEl) {
+        errEl = document.createElement('p');
+        errEl.className = 'form__error';
+        form.appendChild(errEl);
+      }
+      errEl.textContent = message;
     }
 
     // Gallery lightbox
