@@ -831,6 +831,106 @@ body {
   margin-bottom: 24px;
 }
 
+/* ── NEIGHBORHOOD ── */
+.neighborhood {
+  padding: 100px 0;
+  background: var(--bg-alt);
+}
+
+.neighborhood__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.nb-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  margin: 0;
+  background: var(--primary-ghost);
+  aspect-ratio: 4 / 3;
+}
+
+.nb-item--wide {
+  grid-column: span 2;
+  aspect-ratio: 16 / 9;
+}
+
+.nb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.nb-item:hover img {
+  transform: scale(1.04);
+}
+
+.nb-item figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 14px 12px;
+  background: linear-gradient(to top, rgba(20,38,50,.72), transparent);
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.nb-item:hover figcaption {
+  opacity: 1;
+}
+
+.neighborhood__credit {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  text-align: right;
+  margin-bottom: 52px;
+  padding-right: 2px;
+}
+
+.neighborhood__facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 52px;
+}
+
+.nb-fact {
+  text-align: center;
+  padding: 4px 8px;
+}
+
+.nb-fact__icon {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.nb-fact strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+
+.nb-fact p {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
 /* ── CONTACT ── */
 .contact {
   padding: 100px 0;
@@ -1045,6 +1145,19 @@ body {
     padding: 60px 60px 60px;
   }
 
+  .neighborhood__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nb-item--wide {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+  }
+
+  .neighborhood__facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .footer__grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1106,4 +1219,18 @@ body {
 
   .lightbox__prev { left: 8px; }
   .lightbox__next { right: 8px; }
+
+  .neighborhood__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nb-item--wide {
+    grid-column: 1;
+    aspect-ratio: 4 / 3;
+  }
+
+  .neighborhood__facts {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
 }
