@@ -1,6 +1,6 @@
 /* ============================================================
    THE HOMETOWN SUITES — Stylesheet
-   Primary: #5B1A7A (deep purple) | Accent: #C0182D (crimson red)
+   Primary: #2D495E (slate blue) | Accent: #C9A96E (gold) | Light bg: #F8F5F0
    ============================================================ */
 
 *, *::before, *::after {
@@ -10,27 +10,27 @@
 }
 
 :root {
-  --primary:        #5B1A7A;
-  --primary-dark:   #2D0A3F;
-  --primary-mid:    #7B2B9E;
-  --primary-light:  #A05EC0;
-  --primary-pale:   #D4B0E8;
-  --primary-ghost:  #F4ECF8;
-  --accent:         #C0182D;
-  --accent-dark:    #97101F;
-  --bg:             #FCF8FD;
+  --primary:        #2D495E;
+  --primary-dark:   #1E3344;
+  --primary-mid:    #3D6180;
+  --primary-light:  #6B8FA3;
+  --primary-pale:   #B8CEDA;
+  --primary-ghost:  #EAF1F5;
+  --accent:         #C9A96E;
+  --accent-dark:    #A8874D;
+  --bg:             #F8F5F0;
   --bg-alt:         #FFFFFF;
-  --text:           #1A0829;
-  --text-mid:       #5A3A6A;
-  --text-light:     #8A6A9A;
-  --border:         #E8D0F0;
+  --text:           #1A2F3D;
+  --text-mid:       #4A5E6A;
+  --text-light:     #7A909E;
+  --border:         #D8E4EC;
   --font-serif:     'Playfair Display', Georgia, serif;
   --font-sans:      'Inter', system-ui, sans-serif;
   --radius:         12px;
   --radius-sm:      8px;
-  --shadow-sm:      0 1px 4px rgba(91,26,122,.08);
-  --shadow:         0 4px 20px rgba(91,26,122,.12);
-  --shadow-lg:      0 12px 48px rgba(91,26,122,.18);
+  --shadow-sm:      0 1px 4px rgba(45,73,94,.08);
+  --shadow:         0 4px 20px rgba(45,73,94,.12);
+  --shadow-lg:      0 12px 48px rgba(45,73,94,.18);
   --transition:     0.3s ease;
 }
 
@@ -116,7 +116,7 @@ body {
   background: var(--accent-dark);
   border-color: var(--accent-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(192,24,45,.35);
+  box-shadow: 0 6px 20px rgba(201,169,110,.35);
 }
 
 .btn--outline {
@@ -159,7 +159,7 @@ body {
 }
 
 .nav--scrolled {
-  background: rgba(45, 10, 63, 0.97);
+  background: rgba(30, 51, 68, 0.97);
   backdrop-filter: blur(12px);
   padding: 14px 0;
   box-shadow: 0 2px 20px rgba(0,0,0,.25);
@@ -219,7 +219,7 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(192,24,45,.08) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(201,169,110,.08) 0%, transparent 60%),
     radial-gradient(ellipse 50% 80% at 20% 70%, rgba(255,255,255,.04) 0%, transparent 55%);
 }
 
@@ -251,8 +251,8 @@ body {
 
 .hero__eyebrow {
   display: inline-block;
-  background: rgba(192,24,45,.2);
-  border: 1px solid rgba(192,24,45,.4);
+  background: rgba(201,169,110,.2);
+  border: 1px solid rgba(201,169,110,.4);
   color: var(--accent);
   font-size: 0.8rem;
   font-weight: 600;
@@ -416,8 +416,8 @@ body {
 
 .suite-card--featured .suite-card__icon {
   color: var(--accent);
-  background: rgba(192,24,45,.12);
-  border-color: rgba(192,24,45,.25);
+  background: rgba(201,169,110,.12);
+  border-color: rgba(201,169,110,.25);
 }
 
 .suite-card--featured .suite-card__title {
@@ -604,7 +604,7 @@ body {
   left: 0;
   right: 0;
   padding: 32px 16px 14px;
-  background: linear-gradient(to top, rgba(30,5,43,.8), transparent);
+  background: linear-gradient(to top, rgba(20,38,50,.8), transparent);
   color: #FFFFFF;
   font-size: 0.85rem;
   font-weight: 500;
@@ -623,7 +623,7 @@ body {
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(15, 3, 25, 0.97);
+  background: rgba(10, 20, 28, 0.97);
   z-index: 500;
   display: none;
   flex-direction: column;
@@ -877,7 +877,7 @@ body {
   left: 0;
   right: 0;
   padding: 28px 14px 12px;
-  background: linear-gradient(to top, rgba(30,5,43,.72), transparent);
+  background: linear-gradient(to top, rgba(20,38,50,.72), transparent);
   color: #FFFFFF;
   font-size: 0.8rem;
   font-weight: 500;
@@ -1091,8 +1091,8 @@ body {
 
 .footer__badge {
   display: inline-block;
-  background: rgba(192,24,45,.15);
-  border: 1px solid rgba(192,24,45,.3);
+  background: rgba(201,169,110,.15);
+  border: 1px solid rgba(201,169,110,.3);
   color: var(--accent);
   font-size: 0.8rem;
   font-weight: 600;
