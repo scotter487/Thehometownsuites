@@ -145,6 +145,56 @@
     </div>
   </section>
 
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Interior Renderings</span>
+        <h2 class="section-title">Inside the Suites</h2>
+        <p class="section-desc">Architectural renderings of the finished spaces — open living, chef's kitchen, carpeted bedrooms, and spa-inspired baths.</p>
+      </div>
+      <div class="gallery__grid">
+        <button class="gallery__item gallery__item--wide" onclick="openLightbox(0)" aria-label="Open kitchen and living area">
+          <img src="images/kitchen-living.jpg" alt="Open kitchen and living area with exposed beams and skylights" loading="lazy" />
+          <span class="gallery__caption">Open Kitchen &amp; Living</span>
+        </button>
+        <button class="gallery__item" onclick="openLightbox(1)" aria-label="Living area">
+          <img src="images/living-area.jpg" alt="Spacious living area with hardwood floors and exposed beams" loading="lazy" />
+          <span class="gallery__caption">Living Area</span>
+        </button>
+        <button class="gallery__item" onclick="openLightbox(2)" aria-label="Bedroom">
+          <img src="images/bedroom.jpg" alt="Bedroom with plush carpet and walk-in closet" loading="lazy" />
+          <span class="gallery__caption">Bedroom</span>
+        </button>
+        <button class="gallery__item" onclick="openLightbox(3)" aria-label="Bathroom with skylight">
+          <img src="images/bathroom-skylight.jpg" alt="Bathroom with skylight and glass shower over tub" loading="lazy" />
+          <span class="gallery__caption">Bathroom with Skylight</span>
+        </button>
+        <button class="gallery__item" onclick="openLightbox(4)" aria-label="Bathroom with street view">
+          <img src="images/bathroom-window.jpg" alt="Bathroom with large window overlooking Front Street" loading="lazy" />
+          <span class="gallery__caption">Bathroom</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" onclick="closeLightboxOverlay(event)">
+    <button class="lightbox__close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+    <button class="lightbox__prev" onclick="changeSlide(-1, event)" aria-label="Previous image">&#8249;</button>
+    <button class="lightbox__next" onclick="changeSlide(1, event)" aria-label="Next image">&#8250;</button>
+    <div class="lightbox__stage">
+      <div class="lightbox__track" id="lightboxTrack">
+        <img src="images/kitchen-living.jpg" alt="Open kitchen and living area" />
+        <img src="images/living-area.jpg" alt="Spacious living area" />
+        <img src="images/bedroom.jpg" alt="Bedroom with closet" />
+        <img src="images/bathroom-skylight.jpg" alt="Bathroom with skylight" />
+        <img src="images/bathroom-window.jpg" alt="Bathroom with street view" />
+      </div>
+    </div>
+    <div class="lightbox__dots" id="lightboxDots"></div>
+  </div>
+
   <!-- LOCATION -->
   <section class="location" id="location">
     <div class="container">
@@ -266,6 +316,69 @@
       document.querySelector('.contact__form').style.display = 'none';
       document.getElementById('successMsg').style.display = 'flex';
     }
+
+    // Gallery lightbox
+    const galleryImages = [
+      { src: 'images/kitchen-living.jpg',    alt: 'Open Kitchen & Living' },
+      { src: 'images/living-area.jpg',       alt: 'Living Area' },
+      { src: 'images/bedroom.jpg',           alt: 'Bedroom' },
+      { src: 'images/bathroom-skylight.jpg', alt: 'Bathroom with Skylight' },
+      { src: 'images/bathroom-window.jpg',   alt: 'Bathroom' },
+    ];
+    let currentSlide = 0;
+
+    function openLightbox(index) {
+      currentSlide = index;
+      const lb = document.getElementById('lightbox');
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      buildDots();
+      updateLightbox();
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeLightboxOverlay(e) {
+      if (e.target === document.getElementById('lightbox')) closeLightbox();
+    }
+
+    function changeSlide(dir, e) {
+      if (e) e.stopPropagation();
+      currentSlide = (currentSlide + dir + galleryImages.length) % galleryImages.length;
+      updateLightbox();
+    }
+
+    function updateLightbox() {
+      const imgs = document.querySelectorAll('#lightboxTrack img');
+      imgs.forEach((img, i) => {
+        img.style.transform = `translateX(${(i - currentSlide) * 100}%)`;
+      });
+      document.querySelectorAll('.lightbox__dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    function buildDots() {
+      const dotsEl = document.getElementById('lightboxDots');
+      if (dotsEl.children.length) return;
+      galleryImages.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'lightbox__dot';
+        btn.setAttribute('aria-label', `Go to image ${i + 1}`);
+        btn.onclick = (e) => { e.stopPropagation(); currentSlide = i; updateLightbox(); };
+        dotsEl.appendChild(btn);
+      });
+    }
+
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'ArrowRight') changeSlide(1);
+      if (e.key === 'ArrowLeft')  changeSlide(-1);
+      if (e.key === 'Escape')     closeLightbox();
+    });
 
     // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
