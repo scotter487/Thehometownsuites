@@ -1,6 +1,7 @@
 /* ============================================================
    THE HOMETOWN SUITES — Stylesheet
-   Primary: #2D495E (slate blue) | Accent: #C9A96E (gold) | Light bg: #F8F5F0
+   Base: #2D495E (HSL 206°, 35%, 27%) — full palette derived from this
+   Accent: #C9A96E (warm gold, complementary)
    ============================================================ */
 
 *, *::before, *::after {
@@ -10,20 +11,30 @@
 }
 
 :root {
-  --primary:        #2D495E;
-  --primary-dark:   #1E3344;
-  --primary-mid:    #3D6180;
-  --primary-light:  #6B8FA3;
-  --primary-pale:   #B8CEDA;
-  --primary-ghost:  #EAF1F5;
+  /* ── Primary scale — all at Hue 206°, derived from #2D495E ── */
+  --primary-dark:   #1C3345;  /* H206 S40% L19%  — hero, footer, nav */
+  --primary:        #2D495E;  /* H206 S35% L27%  — BASE */
+  --primary-mid:    #3C6078;  /* H206 S33% L36%  — hover states */
+  --primary-light:  #5E8AA4;  /* H206 S30% L50%  — icons, labels */
+  --primary-pale:   #A5C3D4;  /* H206 S30% L73%  — subtle fills */
+  --primary-ghost:  #E4EEF4;  /* H206 S27% L93%  — page backgrounds */
+
+  /* ── Accent — warm gold (complementary to cool blue) ── */
   --accent:         #C9A96E;
   --accent-dark:    #A8874D;
-  --bg:             #F8F5F0;
+
+  /* ── Backgrounds ── */
+  --bg:             #F5F0E8;  /* warm cream, contrasts with cool primaries */
   --bg-alt:         #FFFFFF;
-  --text:           #1A2F3D;
-  --text-mid:       #4A5E6A;
-  --text-light:     #7A909E;
-  --border:         #D8E4EC;
+
+  /* ── Text — same hue, high contrast ── */
+  --text:           #192B3A;  /* H206 S38% L17% */
+  --text-mid:       #425870;  /* H210 S25% L35% */
+  --text-light:     #7890A2;  /* H206 S18% L55% */
+
+  /* ── Border ── */
+  --border:         #C2D4E0;  /* H206 S26% L81% */
+
   --font-serif:     'Playfair Display', Georgia, serif;
   --font-sans:      'Inter', system-ui, sans-serif;
   --radius:         12px;
@@ -159,7 +170,7 @@ body {
 }
 
 .nav--scrolled {
-  background: rgba(30, 51, 68, 0.97);
+  background: rgba(28, 51, 69, 0.97);
   backdrop-filter: blur(12px);
   padding: 14px 0;
   box-shadow: 0 2px 20px rgba(0,0,0,.25);
