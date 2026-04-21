@@ -502,6 +502,19 @@ body {
   border-bottom: none;
 }
 
+.suite-card--wide {
+  grid-column: 1 / -1;
+}
+
+.suite-card__features--cols {
+  columns: 2;
+  column-gap: 32px;
+}
+
+.suite-card__features--cols li {
+  break-inside: avoid;
+}
+
 /* ── AMENITIES ── */
 .amenities {
   background: var(--primary-ghost);
