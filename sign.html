@@ -138,25 +138,25 @@
 
   .space-card {
     display: flex;
-    flex-direction: row;
-    gap: 0.22in;
+    flex-direction: column;
+    gap: 0.15in;
     padding: 0 0.22in;
-    align-items: flex-start;
+    justify-content: flex-start;
   }
   .space-card + .space-card {
     border-left: 1px solid rgba(201,169,110,.25);
   }
 
   .space-img-wrap {
-    flex-shrink: 0;
-    width: 4.8in;
-    height: 100%;
+    width: 100%;
+    flex: 1;
     min-height: 0;
     overflow: hidden;
     border-radius: 0.06in;
     border: 2px solid rgba(201,169,110,.35);
     background: var(--primary-mid);
     position: relative;
+    order: 2;
   }
   .space-img-wrap img {
     width: 100%;
@@ -180,7 +180,7 @@
   }
 
   .space-details {
-    flex: 1;
+    order: 1;
     padding-top: 0.08in;
   }
   .space-name {
