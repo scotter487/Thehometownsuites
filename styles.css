@@ -1111,14 +1111,16 @@ body {
 
 .contact__agent {
   margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(255,255,255,.12);
+  padding: 28px 32px;
+  background: #FFFFFF;
+  border-radius: var(--radius);
   text-align: center;
+  box-shadow: 0 4px 24px rgba(0,0,0,.15);
 }
 
 .contact__agent-intro {
   font-size: 0.9rem;
-  color: rgba(255,255,255,.6);
+  color: var(--text-mid);
   margin-bottom: 6px;
 }
 
@@ -1126,7 +1128,7 @@ body {
   font-family: var(--font-serif);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--primary-dark);
   margin-bottom: 20px;
   letter-spacing: 0.02em;
 }
@@ -1143,7 +1145,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: rgba(255,255,255,.8);
+  color: var(--primary);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -1151,12 +1153,12 @@ body {
 }
 
 .contact__agent-links a:hover {
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 
 .contact__agent-links svg {
   flex-shrink: 0;
-  opacity: 0.7;
+  color: var(--accent);
 }
 
 .form__error {
