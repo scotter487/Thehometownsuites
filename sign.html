@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hometown Suites — Print Sign 24×36</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/qrcodejs@1.0.0/qrcode.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --primary-dark:  #1C3345;
+    --primary:       #2D495E;
+    --primary-mid:   #3C6078;
+    --accent:        #C9A96E;
+    --accent-dark:   #A8874D;
+    --text-light:    #E8EFF4;
+    --font-serif:    'Playfair Display', Georgia, serif;
+    --font-sans:     'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    background: #888;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .sign {
+    width: 24in;
+    height: 36in;
+    background: var(--primary-dark);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-sans);
+    box-shadow: 0 20px 80px rgba(0,0,0,.6);
+  }
+
+  /* ── Outer gold border frame ── */
+  .sign::before {
+    content: '';
+    position: absolute;
+    inset: 0.35in;
+    border: 3px solid var(--accent);
+    z-index: 10;
+    pointer-events: none;
+  }
+  .sign::after {
+    content: '';
+    position: absolute;
+    inset: 0.45in;
+    border: 1px solid rgba(201,169,110,.4);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  /* ── Subtle texture overlay ── */
+  .sign-bg-texture {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(61,96,120,.35) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(28,51,69,.5) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* ─────────────── HEADER ─────────────── */
+  .sign-header {
+    padding: 0.7in 0.75in 0.45in;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sign-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.22in;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.14in;
+  }
+
+  .sign-title {
+    font-family: var(--font-serif);
+    font-size: 0.9in;
+    font-weight: 700;
+    line-height: 1.05;
+    color: #fff;
+    letter-spacing: 0.01em;
+  }
+
+  .sign-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .sign-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.2in;
+    margin: 0.3in auto 0;
+    width: 8in;
+  }
+  .sign-divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+  }
+  .sign-divider-diamond {
+    width: 0.12in;
+    height: 0.12in;
+    background: var(--accent);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ─────────────── SPACES SECTION ─────────────── */
+  .sign-spaces {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    padding: 0 0.75in;
+    position: relative;
+    z-index: 2;
+    align-items: stretch;
+  }
+
+  .space-card {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.18in;
+  }
+  .space-card + .space-card {
+    border-left: 1px solid rgba(201,169,110,.25);
+  }
+
+  .space-img-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 2.4;
+    overflow: hidden;
+    border-radius: 0.06in;
+    border: 2px solid rgba(201,169,110,.35);
+    background: var(--primary-mid);
+    position: relative;
+  }
+  .space-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .space-img-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.12in 0.15in 0.1in;
+    background: linear-gradient(to top, rgba(28,51,69,.92) 60%, transparent);
+    font-family: var(--font-sans);
+    font-size: 0.16in;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .space-details {
+    padding: 0.18in 0.05in 0;
+    flex: 1;
+  }
+  .space-name {
+    font-family: var(--font-serif);
+    font-size: 0.28in;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 0.1in;
+  }
+  .space-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.06in;
+  }
+  .space-features li {
+    font-size: 0.155in;
+    color: rgba(232,239,244,.8);
+    line-height: 1.4;
+    padding-left: 0.2in;
+    position: relative;
+  }
+  .space-features li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.09in;
+    top: 0.04in;
+  }
+
+  /* ─────────────── COMING SOON BANNER ─────────────── */
+  .sign-coming {
+    margin: 0.35in 0.75in 0;
+    border-top: 1px solid rgba(201,169,110,.3);
+    border-bottom: 1px solid rgba(201,169,110,.3);
+    padding: 0.22in 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    gap: 0.3in;
+  }
+
+  .coming-text {
+    font-family: var(--font-serif);
+    font-size: 0.52in;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-align: center;
+    line-height: 1;
+  }
+  .coming-text span {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.17in;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.06in;
+  }
+
+  .coming-divider {
+    width: 1px;
+    height: 0.5in;
+    background: rgba(201,169,110,.35);
+    flex-shrink: 0;
+  }
+
+  .coming-address {
+    text-align: center;
+  }
+  .coming-address-line1 {
+    font-family: var(--font-sans);
+    font-size: 0.18in;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .coming-address-line2 {
+    font-family: var(--font-sans);
+    font-size: 0.155in;
+    font-weight: 400;
+    color: rgba(232,239,244,.7);
+    margin-top: 0.05in;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─────────────── FOOTER ─────────────── */
+  .sign-footer {
+    padding: 0.28in 0.75in 0.7in;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer-url {
+    font-family: var(--font-serif);
+    font-size: 0.22in;
+    font-style: italic;
+    color: rgba(232,239,244,.6);
+    letter-spacing: 0.02em;
+  }
+
+  .footer-tagline {
+    text-align: center;
+  }
+  .footer-tagline-main {
+    font-family: var(--font-sans);
+    font-size: 0.17in;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(232,239,244,.55);
+  }
+  .footer-tagline-sub {
+    font-family: var(--font-sans);
+    font-size: 0.14in;
+    color: rgba(232,239,244,.4);
+    margin-top: 0.04in;
+    letter-spacing: 0.08em;
+  }
+
+  .qr-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1in;
+  }
+  .qr-wrap {
+    background: #fff;
+    padding: 0.1in;
+    border-radius: 0.05in;
+    width: 1.35in;
+    height: 1.35in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #qrcode canvas,
+  #qrcode img {
+    display: block;
+  }
+  .qr-label {
+    font-family: var(--font-sans);
+    font-size: 0.13in;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+  }
+  .qr-sublabel {
+    font-family: var(--font-sans);
+    font-size: 0.115in;
+    color: rgba(232,239,244,.5);
+    text-align: center;
+    margin-top: -0.04in;
+  }
+
+  /* ── Print styles ── */
+  @media print {
+    body { background: none; padding: 0; margin: 0; }
+    .sign { box-shadow: none; }
+    @page { size: 24in 36in; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sign">
+  <div class="sign-bg-texture"></div>
+
+  <!-- HEADER -->
+  <header class="sign-header">
+    <p class="sign-eyebrow">200 Front Street &nbsp;·&nbsp; Media, Pennsylvania</p>
+    <h1 class="sign-title">The Hometown<br><em>Suites</em></h1>
+    <div class="sign-divider">
+      <div class="sign-divider-line"></div>
+      <div class="sign-divider-diamond"></div>
+      <div class="sign-divider-line"></div>
+    </div>
+  </header>
+
+  <!-- THREE SPACES -->
+  <section class="sign-spaces">
+
+    <!-- Suite -->
+    <div class="space-card">
+      <div class="space-img-wrap">
+        <img src="images/sign-suite.jpg" alt="Two-Bedroom Suite interior">
+        <div class="space-img-label">Suites</div>
+      </div>
+      <div class="space-details">
+        <h2 class="space-name">Two-Bedroom<br>Suites</h2>
+        <ul class="space-features">
+          <li>Two private bedrooms</li>
+          <li>Full kitchen</li>
+          <li>Two full bathrooms</li>
+          <li>In-suite washer &amp; dryer</li>
+          <li>High-speed Wi-Fi</li>
+          <li>Elevator access</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Office -->
+    <div class="space-card">
+      <div class="space-img-wrap">
+        <img src="images/sign-office.jpg" alt="Private Office space">
+        <div class="space-img-label">Office</div>
+      </div>
+      <div class="space-details">
+        <h2 class="space-name">Private<br>Office</h2>
+        <ul class="space-features">
+          <li>Professional work environment</li>
+          <li>High-speed internet</li>
+          <li>Flexible scheduling</li>
+          <li>In the heart of Media Borough</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Storage -->
+    <div class="space-card">
+      <div class="space-img-wrap">
+        <img src="images/sign-storage.jpg" alt="Climate-controlled storage units">
+        <div class="space-img-label">Storage</div>
+      </div>
+      <div class="space-details">
+        <h2 class="space-name">Climate-Controlled<br>Storage</h2>
+        <ul class="space-features">
+          <li>5×10, 10×10 &amp; larger units</li>
+          <li>Climate controlled</li>
+          <li>Key fob access</li>
+          <li>Robust security</li>
+          <li>Online booking available</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- COMING SUMMER 2026 -->
+  <div class="sign-coming">
+    <div class="coming-text">
+      <span>Opening</span>
+      Summer 2026
+    </div>
+    <div class="coming-divider"></div>
+    <div class="coming-address">
+      <div class="coming-address-line1">200 Front Street</div>
+      <div class="coming-address-line2">Media, Pennsylvania 19063</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="sign-footer">
+    <div class="footer-url">thehometownsuites.com</div>
+
+    <div class="footer-tagline">
+      <div class="footer-tagline-main">Boutique Living in Media Borough</div>
+      <div class="footer-tagline-sub">Suites &nbsp;·&nbsp; Private Office &nbsp;·&nbsp; Storage</div>
+    </div>
+
+    <div class="qr-block">
+      <div class="qr-wrap">
+        <div id="qrcode"></div>
+      </div>
+      <div class="qr-label">Join the Waitlist</div>
+      <div class="qr-sublabel">Scan to reserve your spot</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Generate QR code pointing to the waitlist form
+  new QRCode(document.getElementById('qrcode'), {
+    text: 'https://thehometownsuites.com/#contact',
+    width: 106,
+    height: 106,
+    colorDark: '#1C3345',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+
+</body>
+</html>
