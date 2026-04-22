@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Hometown Suites — Print Sign 24×36</title>
+<title>The Hometown Suites — Print Sign 36×24 Landscape</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -32,8 +32,8 @@
   }
 
   .sign {
-    width: 24in;
-    height: 36in;
+    width: 36in;
+    height: 24in;
     background: var(--primary-dark);
     position: relative;
     overflow: hidden;
@@ -47,7 +47,7 @@
   .sign::before {
     content: '';
     position: absolute;
-    inset: 0.35in;
+    inset: 0.3in;
     border: 3px solid var(--accent);
     z-index: 10;
     pointer-events: none;
@@ -55,7 +55,7 @@
   .sign::after {
     content: '';
     position: absolute;
-    inset: 0.45in;
+    inset: 0.4in;
     border: 1px solid rgba(201,169,110,.4);
     z-index: 10;
     pointer-events: none;
@@ -66,14 +66,14 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 0%, rgba(61,96,120,.35) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 100%, rgba(28,51,69,.5) 0%, transparent 60%);
+      radial-gradient(ellipse at 15% 0%, rgba(61,96,120,.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 100%, rgba(28,51,69,.5) 0%, transparent 55%);
     pointer-events: none;
   }
 
   /* ─────────────── HEADER ─────────────── */
   .sign-header {
-    padding: 0.7in 0.75in 0.45in;
+    padding: 0.55in 0.75in 0.3in;
     text-align: center;
     position: relative;
     z-index: 2;
@@ -81,17 +81,17 @@
 
   .sign-eyebrow {
     font-family: var(--font-sans);
-    font-size: 0.22in;
+    font-size: 0.2in;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 0.14in;
+    margin-bottom: 0.1in;
   }
 
   .sign-title {
     font-family: var(--font-serif);
-    font-size: 0.9in;
+    font-size: 0.78in;
     font-weight: 700;
     line-height: 1.05;
     color: #fff;
@@ -107,8 +107,8 @@
     display: flex;
     align-items: center;
     gap: 0.2in;
-    margin: 0.3in auto 0;
-    width: 8in;
+    margin: 0.22in auto 0;
+    width: 14in;
   }
   .sign-divider-line {
     flex: 1;
@@ -116,8 +116,8 @@
     background: linear-gradient(to right, transparent, var(--accent), transparent);
   }
   .sign-divider-diamond {
-    width: 0.12in;
-    height: 0.12in;
+    width: 0.11in;
+    height: 0.11in;
     background: var(--accent);
     transform: rotate(45deg);
     flex-shrink: 0;
@@ -133,20 +133,25 @@
     position: relative;
     z-index: 2;
     align-items: stretch;
+    min-height: 0;
   }
 
   .space-card {
     display: flex;
-    flex-direction: column;
-    padding: 0 0.18in;
+    flex-direction: row;
+    gap: 0.22in;
+    padding: 0 0.22in;
+    align-items: flex-start;
   }
   .space-card + .space-card {
     border-left: 1px solid rgba(201,169,110,.25);
   }
 
   .space-img-wrap {
-    width: 100%;
-    aspect-ratio: 3 / 2.4;
+    flex-shrink: 0;
+    width: 4.8in;
+    height: 100%;
+    min-height: 0;
     overflow: hidden;
     border-radius: 0.06in;
     border: 2px solid rgba(201,169,110,.35);
@@ -164,10 +169,10 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0.12in 0.15in 0.1in;
+    padding: 0.1in 0.12in 0.08in;
     background: linear-gradient(to top, rgba(28,51,69,.92) 60%, transparent);
     font-family: var(--font-sans);
-    font-size: 0.16in;
+    font-size: 0.14in;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -175,12 +180,12 @@
   }
 
   .space-details {
-    padding: 0.18in 0.05in 0;
     flex: 1;
+    padding-top: 0.08in;
   }
   .space-name {
     font-family: var(--font-serif);
-    font-size: 0.28in;
+    font-size: 0.26in;
     font-weight: 600;
     color: #fff;
     line-height: 1.2;
@@ -190,13 +195,13 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.06in;
+    gap: 0.055in;
   }
   .space-features li {
-    font-size: 0.155in;
+    font-size: 0.145in;
     color: rgba(232,239,244,.8);
     line-height: 1.4;
-    padding-left: 0.2in;
+    padding-left: 0.18in;
     position: relative;
   }
   .space-features li::before {
@@ -204,27 +209,27 @@
     position: absolute;
     left: 0;
     color: var(--accent);
-    font-size: 0.09in;
-    top: 0.04in;
+    font-size: 0.085in;
+    top: 0.038in;
   }
 
   /* ─────────────── COMING SOON BANNER ─────────────── */
   .sign-coming {
-    margin: 0.35in 0.75in 0;
+    margin: 0.28in 0.75in 0;
     border-top: 1px solid rgba(201,169,110,.3);
     border-bottom: 1px solid rgba(201,169,110,.3);
-    padding: 0.22in 0;
+    padding: 0.18in 0;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     z-index: 2;
-    gap: 0.3in;
+    gap: 0.4in;
   }
 
   .coming-text {
     font-family: var(--font-serif);
-    font-size: 0.52in;
+    font-size: 0.46in;
     font-weight: 700;
     color: var(--accent);
     letter-spacing: 0.04em;
@@ -234,17 +239,17 @@
   .coming-text span {
     display: block;
     font-family: var(--font-sans);
-    font-size: 0.17in;
+    font-size: 0.15in;
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-light);
-    margin-bottom: 0.06in;
+    margin-bottom: 0.05in;
   }
 
   .coming-divider {
     width: 1px;
-    height: 0.5in;
+    height: 0.45in;
     background: rgba(201,169,110,.35);
     flex-shrink: 0;
   }
@@ -254,7 +259,7 @@
   }
   .coming-address-line1 {
     font-family: var(--font-sans);
-    font-size: 0.18in;
+    font-size: 0.17in;
     font-weight: 600;
     color: #fff;
     letter-spacing: 0.05em;
@@ -262,16 +267,16 @@
   }
   .coming-address-line2 {
     font-family: var(--font-sans);
-    font-size: 0.155in;
+    font-size: 0.145in;
     font-weight: 400;
     color: rgba(232,239,244,.7);
-    margin-top: 0.05in;
+    margin-top: 0.045in;
     letter-spacing: 0.05em;
   }
 
   /* ─────────────── FOOTER ─────────────── */
   .sign-footer {
-    padding: 0.28in 0.75in 0.7in;
+    padding: 0.2in 0.75in 0.52in;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -281,7 +286,7 @@
 
   .footer-url {
     font-family: var(--font-serif);
-    font-size: 0.22in;
+    font-size: 0.2in;
     font-style: italic;
     color: rgba(232,239,244,.6);
     letter-spacing: 0.02em;
@@ -292,7 +297,7 @@
   }
   .footer-tagline-main {
     font-family: var(--font-sans);
-    font-size: 0.17in;
+    font-size: 0.16in;
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -300,9 +305,9 @@
   }
   .footer-tagline-sub {
     font-family: var(--font-sans);
-    font-size: 0.14in;
+    font-size: 0.13in;
     color: rgba(232,239,244,.4);
-    margin-top: 0.04in;
+    margin-top: 0.035in;
     letter-spacing: 0.08em;
   }
 
@@ -310,14 +315,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.1in;
+    gap: 0.08in;
   }
   .qr-wrap {
     background: #fff;
-    padding: 0.1in;
+    padding: 0.09in;
     border-radius: 0.05in;
-    width: 1.35in;
-    height: 1.35in;
+    width: 1.2in;
+    height: 1.2in;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -328,7 +333,7 @@
   }
   .qr-label {
     font-family: var(--font-sans);
-    font-size: 0.13in;
+    font-size: 0.12in;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -337,17 +342,17 @@
   }
   .qr-sublabel {
     font-family: var(--font-sans);
-    font-size: 0.115in;
+    font-size: 0.105in;
     color: rgba(232,239,244,.5);
     text-align: center;
-    margin-top: -0.04in;
+    margin-top: -0.03in;
   }
 
   /* ── Print styles ── */
   @media print {
     body { background: none; padding: 0; margin: 0; }
     .sign { box-shadow: none; }
-    @page { size: 24in 36in; margin: 0; }
+    @page { size: 36in 24in landscape; margin: 0; }
   }
 </style>
 </head>
@@ -359,7 +364,7 @@
   <!-- HEADER -->
   <header class="sign-header">
     <p class="sign-eyebrow">200 Front Street &nbsp;·&nbsp; Media, Pennsylvania</p>
-    <h1 class="sign-title">The Hometown<br><em>Suites</em></h1>
+    <h1 class="sign-title">The Hometown <em>Suites</em></h1>
     <div class="sign-divider">
       <div class="sign-divider-line"></div>
       <div class="sign-divider-diamond"></div>
@@ -444,7 +449,7 @@
     <div class="footer-url">thehometownsuites.com</div>
 
     <div class="footer-tagline">
-      <div class="footer-tagline-main">Boutique Living in Media Borough</div>
+      <div class="footer-tagline-main">Spacious Living in Media Borough</div>
       <div class="footer-tagline-sub">Suites &nbsp;·&nbsp; Private Office &nbsp;·&nbsp; Storage</div>
     </div>
 
@@ -459,11 +464,10 @@
 </div>
 
 <script>
-  // Generate QR code pointing to the waitlist form
   new QRCode(document.getElementById('qrcode'), {
     text: 'https://thehometownsuites.com/#contact',
-    width: 106,
-    height: 106,
+    width: 94,
+    height: 94,
     colorDark: '#1C3345',
     colorLight: '#ffffff',
     correctLevel: QRCode.CorrectLevel.H
